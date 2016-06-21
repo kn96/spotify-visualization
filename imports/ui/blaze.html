@@ -1,0 +1,49 @@
+<template name="home">
+  <a href="/login">Login to Spotify</a>
+</template>
+
+<template name="spotify">
+	<h1>Spotify Area</h1>
+  <h2>{{ display_name }}</h2>
+  <p>ID: {{ id }}</p>
+  <div>
+    {{ #each playlists }}
+      {{> playlistSummary child=this index=@index}}
+    {{ /each }}
+  </div>
+  <div>
+    {{#if hasCurrentPlaylist}}
+    <span>
+      <h2>Name: {{ playlistName }}</h2><img src="{{ mediumImage }}">
+    </span>
+      <div>
+        {{#each songs}}
+          <div class="clearfix">
+            {{> song}}
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+</template>
+
+<template name="playlistSummary">
+  <ul>
+    <li>{{ child.name }} <button class="playlistButton" id="{{ child.id }}">Open Playlist</button></li>
+  </ul>
+</template>
+
+<template name="song">
+  <div>
+    <h2>
+      {{track.name}}
+      <br>
+      <small>{{artistNames}}</small>
+    </h2>
+  </div>
+  <div class="clearfix">
+    <div class="col-md-2"><h4>{{track.album.name}}</h4></div>
+    <div class="col-md-2"><img src="{{albumArt}}"></div>
+  </div>
+  <span><a href="{{track.external_urls.spotify}}">Open this song in Spotify</a></span>
+</template>
