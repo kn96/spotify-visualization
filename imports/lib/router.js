@@ -22,7 +22,7 @@ FlowRouter.route('/login', {
 
 FlowRouter.route('/spotify', {
 	triggersEnter: [function (context, redirect) {
-    if (Meteor.user() === undefined) {
+    if (Meteor.userId() === undefined) {
       redirect('/')
     }
   }],

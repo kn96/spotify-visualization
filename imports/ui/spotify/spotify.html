@@ -1,0 +1,53 @@
+<template name="spotify">
+  <div id="main-container">
+    <div class="jumbotron">
+      <div class="clearfix">
+        {{> user}}
+        {{> loginButtons align="right"}}
+      </div>
+    </div>
+    {{#if hasCurrentPlaylist}}
+      {{#unless songs}}
+        <div class="progress" style="margin-top: 10px; margin-bottom: 20px;">
+          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%; font-weight: bold;">
+            <span>Loading songs...</span>
+          </div>
+        </div>
+      {{/unless}}  
+    {{/if}}
+    <div class="clearfix">
+      <div class="playlists">
+        {{ #each playlists }}
+          {{> playlistSummary child=this}}
+        {{ /each }}
+      </div>
+    </div>
+    <div>
+      {{#if hasCurrentPlaylist}}
+      <div class="playlist-header clearfix">
+        <div class="playlist-left">
+          <img id="playlistImg" src="{{ largeImage }}">
+          <div id="playlistDetails">
+            <h1 id="playlistName">{{ playlistName }}</h1>
+            <br>
+            {{ #if songCount }}
+              <h3 id="songCount"><small>{{ songCount }} songs, {{ artistCount }} artists</small></h3>
+              <h3 id="playlistDuration"><small>{{ playlistDuration }}</small></h3>
+              <button class="btn btn-white" id="artist-toggle">Show more artists</button>
+            {{ /if }}
+          </div>
+        </div>
+        {{ #each artists }}
+            {{> artistSongCount }}
+        {{ /each }}  
+      </div>
+      <div>
+        {{> artistsVisualization artists=artists width=tableWidth}}
+      </div>
+        {{ #if songs }}
+          {{ > songsTable width=tableWidth songs=songs}}
+        {{ /if }}
+      {{/if}}
+    </div>
+  </div>
+</template>

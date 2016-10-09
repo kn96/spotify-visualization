@@ -7,9 +7,14 @@ import { ReactiveDict } from 'meteor/reactive-dict'
 import '../imports/startup/client/index.js'
 import '../imports/lib/router.js'
 
-import '../imports/assets/bootstrap/css/bootstrap.min.css'
-import '../imports/assets/bootstrap/js/bootstrap.min.js'
-
 import './main.html'
-import '../imports/ui/blaze.html'
+
+/* Templates */
+import '../imports/ui/home/home.html'
+import '../imports/ui/playlists/playlists.html'
+import '../imports/ui/playlists-detail/playlists-detail.html'
+import '../imports/ui/spotify/spotify.html'
+
 import '../imports/ui/spotifyConfig.js'
+import '../imports/assets/pagination/jquery.simplePagination.js'
+import '../imports/assets/pagination/simplePagination.css'

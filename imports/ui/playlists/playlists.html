@@ -1,0 +1,12 @@
+<template name="playlistSummary">
+    <div class="playlist">
+      {{ #if playlistImage child.images }}
+        <img class="playlist-selection-img" style="{{ #if no_access child.owner.id child.public child.collaborative }} opacity: 0.3 {{ /if }}" src="{{ playlistImage child.images }}">
+      {{ else }}
+        <img class="playlist-selection-img" style="opacity: 0.5" src="/assets/png/music-note.png">
+      {{ /if }}
+      <h4>{{ child.name }}</h4>
+      <div><button class="playlistButton btn btn-secondary {{ #if no_access child.owner.id child.public child.collaborative }} disabled {{ /if }}" 
+                   id="{{ #unless no_access child.owner.id child.public child.collaborative }}{{ child.id }}{{ /unless }}">Open Playlist</button></div>
+    </div>
+</template>

@@ -33,17 +33,14 @@ Meteor.methods({
     }
     return response.data
   },
-  getArtists: function () {
+  getArtists: function (artistIds) {
     var spotifyApi = new SpotifyWebApi()
-    var response = spotifyApi.getPlaylistTracks(Meteor.user().services.spotify.id, playlistId, 
-      {"fields": "items(track(artists(external_urls(spotify),name)))"})
+    var response = spotifyApi.getArtists(artistIds)
     if (checkTokenRefreshed(response, spotifyApi)) {
-      var response = spotifyApi.getPlaylistTracks(Meteor.user().services.spotify.id, playlistId, 
-        {"fields": "items(track(artists(external_urls(spotify),name)))"})
+      var response = spotifyApi.getArtists(artistIds)
     }
-    console.log(response.data)
     return response.data
-  }
+  },
 })
 
 var checkTokenRefreshed = function(response, api) {
