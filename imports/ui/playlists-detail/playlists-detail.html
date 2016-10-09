@@ -25,57 +25,26 @@
   {{ configurePagination }}
 </template>
 
-<template name="user">
-  <div class="col-lg-3 col-md-3 col-sm-12">
-    {{ #if profile_picture }}
-      <img class="profile-picture" src="{{profile_picture}}">
-    {{ else }}
-      <img class="profile-picture" src="assets/png/generic_profile.jpg">
-    {{ /if }}
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-12 user-summary">
-    <h2>{{ display_name }}</h2>
-    <p>ID: {{ id }}</p>
-    {{ #if followers }}
-      <p>{{ followers }} followers</p>
-    {{ else }}
-      <p>- followers</p>
-    {{ /if }}
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-12">
-  </div>
-</template>
-
-<template name="artistsVisualization">
-  <div id="dthree-container">
-    {{ #if artists }}
-      {{ render artists width false}}
-    {{ /if }}
-  </div>
-</template>
-
 <template name="songsTable">
-  <table class="songs" id="songs" style="width: {{tableWidth}}px;">
-    <thead>
-      <tr>
-        <th id="name-head">Name 
-          <!-- <span id="name-sort" class="glyphicon glyphicon-triangle-top sort-toggle"></span> -->
-        </th>
-        <th id="artist-head">Artist 
-          <!-- <span id="artist-sort" class="glyphicon glyphicon-triangle-top sort-toggle"></span> -->
-        </th>
-        <th id="album-head">Album 
-          <!-- <span id="album-sort" class="glyphicon glyphicon-triangle-top sort-toggle"></span> -->
-        </th>
-        <th id="date-head">Date Added 
-          <!-- <span id="date-sort" class="glyphicon glyphicon-triangle-top sort-toggle"></span> -->
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each songs}}
-        {{> song}}
-      {{/each}}
-    </tbody>
-  </table>
+  <div class="songs-container">
+    <table class="songs" id="songs" style="width: {{width}}px;">
+      <thead>
+        <tr>
+          <th class="name-head">Name
+          </th>
+          <th class="artist-head">Artist
+          </th>
+          <th class="album-head">Album
+          </th>
+          <th class="date-head">Date Added
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each songs}}
+          {{> song}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </template>

@@ -1,9 +1,24 @@
 <template name="spotify">
-  <div id="main-container">
-    <div class="jumbotron">
+  {{ #if userLoaded }}
+  <div class="main-container">
+    <div class="header">
       <div class="clearfix">
         {{> user}}
         {{> loginButtons align="right"}}
+      </div>
+    </div>
+    <div class="clearfix">
+      {{#if hasCurrentPlaylist}}
+        {{#unless songs}}
+          <div class="loading-overlay">
+            <h2 class="loading-text">Loading...</h2>
+          </div>
+        {{/unless}}
+      {{/if}}
+      <div class="playlists">
+        {{ #each playlists }}
+          {{> playlistSummary child=this}}
+        {{ /each }}
       </div>
     </div>
     {{#if hasCurrentPlaylist}}
@@ -13,33 +28,26 @@
             <span>Loading songs...</span>
           </div>
         </div>
-      {{/unless}}  
+      {{/unless}}
     {{/if}}
-    <div class="clearfix">
-      <div class="playlists">
-        {{ #each playlists }}
-          {{> playlistSummary child=this}}
-        {{ /each }}
-      </div>
-    </div>
     <div>
       {{#if hasCurrentPlaylist}}
-      <div class="playlist-header clearfix">
+      <div class="playlist-header clearfix artist-retracted">
         <div class="playlist-left">
-          <img id="playlistImg" src="{{ largeImage }}">
-          <div id="playlistDetails">
-            <h1 id="playlistName">{{ playlistName }}</h1>
+          <img class="playlistImg" src="{{ largeImage }}">
+          <div class="playlistDetails">
+            <h1 class="playlistName">{{ playlistName }}</h1>
             <br>
             {{ #if songCount }}
-              <h3 id="songCount"><small>{{ songCount }} songs, {{ artistCount }} artists</small></h3>
-              <h3 id="playlistDuration"><small>{{ playlistDuration }}</small></h3>
-              <button class="btn btn-white" id="artist-toggle">Show more artists</button>
+              <h3 class="songCount"><small>{{ songCount }} songs, {{ artistCount }} artists</small></h3>
+              <h3 class="playlistDuration"><small>{{ playlistDuration }}</small></h3>
+              <button class="btn btn-white artist-toggle">Show all artists</button>
             {{ /if }}
           </div>
         </div>
         {{ #each artists }}
             {{> artistSongCount }}
-        {{ /each }}  
+        {{ /each }}
       </div>
       <div>
         {{> artistsVisualization artists=artists width=tableWidth}}
@@ -49,5 +57,7 @@
         {{ /if }}
       {{/if}}
     </div>
+    {{ > footer }}
   </div>
+  {{ /if }}
 </template>

@@ -1,0 +1,19 @@
+<template name="user">
+  <div class="user">
+    {{ #if profile_picture }}
+      <img class="profile-picture" src="{{profile_picture}}">
+    {{ else }}
+      <img class="profile-picture" src="assets/png/generic_profile.jpg">
+    {{ /if }}
+    <div class="user-summary">
+      <h2>{{ display_name }}</h2>
+      <p>ID: {{ id }}</p>
+      {{ #if followers }}
+        <p>{{ followers }} followers</p>
+      {{ else }}
+        <p>- followers</p>
+      {{ /if }}
+    </div>
+    <div class="profile-gradient"></div>
+  </div>
+</template>

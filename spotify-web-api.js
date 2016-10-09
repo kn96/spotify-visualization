@@ -768,7 +768,6 @@ function SpotifyWebApi(credentials) {
 
     if (callback) {
       getAllTracks(request).then(function (data) {
-        console.log('done')
         callback(null, data)
       }, function(err) {
         console.log('errors')

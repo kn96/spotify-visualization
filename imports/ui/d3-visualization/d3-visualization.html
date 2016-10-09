@@ -1,0 +1,11 @@
+<template name="artistsVisualization">
+  <div class="vis-options">
+    <button class="btn btn-white artist-picture-toggle">Enable Artist Photos In Bubbles</button>
+    <div>Warning: enabling this heavily increases data consumption.</div>
+  </div>
+  <div id="dthree-container">
+    {{ #if artists }}
+      {{ render artists width displayArtistImages}}
+    {{ /if }}
+  </div>
+</template>
